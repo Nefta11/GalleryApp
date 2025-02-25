@@ -3,7 +3,11 @@
     <CarouselComponent class="carousel" v-slot="{ currentSlide }">
       <SlideWrapper v-for="(slide, index) in carouselSlides" :key="index">
         <div v-show="currentSlide === index + 1" class="slide-info slide">
-          <img :src="require(`@/assets/${slide}.jpg`)" alt="slide" class="img" />
+          <img
+            :src="require(`@/assets/${slide}.jpg`)"
+            alt="slide"
+            class="img"
+          />
         </div>
       </SlideWrapper>
     </CarouselComponent>
@@ -18,7 +22,7 @@ export default {
   name: "HomeView",
   components: { CarouselComponent, SlideWrapper },
   setup() {
-    const carouselSlides = ["img1", "img2", "img3","img4"];
+    const carouselSlides = ["img1", "img2", "img3", "img4", "img5"];
 
     return { carouselSlides };
   },
