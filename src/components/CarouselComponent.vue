@@ -19,15 +19,18 @@ import { ref, onMounted } from "vue";
 export default {
   setup() {
     const currentSlide = ref(1);
+    const getSlideCount = ref(0);
 
     onMounted(() => {
+      getSlideCount.value = document.querySelectorAll('.slide').length;
+      console.log('Slide count:', getSlideCount.value);
       // Simulación de cambio de diapositiva
       setInterval(() => {
-        currentSlide.value = (currentSlide.value % 3) + 1;
+        currentSlide.value = (currentSlide.value % getSlideCount.value) + 1;
       }, 3000);
     });
 
-    return { currentSlide };
+    return { currentSlide, getSlideCount };
   },
 };
 </script>
@@ -51,6 +54,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  top: 0;
 
   .toggle-page {
     display: flex;
@@ -69,7 +73,7 @@ export default {
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    background-color: #6347c7;
+    background-color: #ce12df;
     color: #fff;
   }
 }

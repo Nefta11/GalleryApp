@@ -2,8 +2,8 @@
   <div class="home">
     <CarouselComponent class="carousel" v-slot="{ currentSlide }">
       <SlideWrapper v-for="(slide, index) in carouselSlides" :key="index">
-        <div v-show="currentSlide === index + 1" class="slide-info">
-          <img :src="require(`@/assets/${slide}.jpg`)" alt="slide" />
+        <div v-show="currentSlide === index + 1" class="slide-info slide">
+          <img :src="require(`@/assets/${slide}.jpg`)" alt="slide" class="img" />
         </div>
       </SlideWrapper>
     </CarouselComponent>
@@ -38,6 +38,9 @@ export default {
   width: 100%;
   max-width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .img {
   min-width: 100%;
