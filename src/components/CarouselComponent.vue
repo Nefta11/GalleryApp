@@ -1,6 +1,15 @@
 <template>
   <div class="carousel-container">
-    <slot :currentSlide="currentSlide"></slot>
+    <slot :currentSlide="currentSlide" />
+    <!--Navegacrión-->
+    <div class="navigate">
+      <div class="togglet-page left">
+        <i class="fast fa-chevron-left"/>
+      </div>
+      <div class="togglet-page rigth">
+        <i class="fast fa-chevron-rigth"/>
+      </div>
+    </div>
   </div>
 </template>
 
