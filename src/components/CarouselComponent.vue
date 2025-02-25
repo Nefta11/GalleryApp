@@ -45,7 +45,7 @@ export default {
       // Simulación de cambio de diapositiva
       setInterval(() => {
         currentSlide.value = (currentSlide.value % getSlideCount.value) + 1;
-      }, 3000);
+      }, 10000);
     });
 
     return { currentSlide, getSlideCount, nextSlide, prevSlide };
