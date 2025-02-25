@@ -1,13 +1,13 @@
 <template>
   <div class="carousel-container">
     <slot :currentSlide="currentSlide" />
-    <!--Navegacrión-->
+    <!-- Navegación -->
     <div class="navigate">
-      <div class="togglet-page left">
-        <i class="fast fa-chevron-left"/>
+      <div class="toggle-page left">
+        <i class="fas fa-chevron-left" />
       </div>
-      <div class="togglet-page rigth">
-        <i class="fast fa-chevron-rigth"/>
+      <div class="toggle-page right">
+        <i class="fas fa-chevron-right" />
       </div>
     </div>
   </div>
@@ -32,10 +32,45 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss">
 .carousel-container {
   display: flex;
   overflow: hidden;
   position: relative;
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.navigate {
+  padding: 0 16px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .toggle-page {
+    display: flex;
+    flex: 1;
+  }
+
+  .right {
+    justify-content: flex-end;
+  }
+
+  i {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: #6347c7;
+    color: #fff;
+  }
 }
 </style>
