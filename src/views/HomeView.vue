@@ -18,7 +18,7 @@ export default {
   name: "HomeView",
   components: { CarouselComponent, SlideWrapper },
   setup() {
-    const carouselSlides = ["img1", "img2", "img3"];
+    const carouselSlides = ["img1", "img2", "img3","img4"];
 
     return { carouselSlides };
   },
