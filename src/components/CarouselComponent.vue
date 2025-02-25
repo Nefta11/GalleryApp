@@ -89,10 +89,15 @@ export default {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 60px; 
+    height: 60px;
     background-color: #ce12df;
     color: #fff;
+    transition: transform 0.2s; 
+  }
+
+  i:active {
+    transform: scale(1.1);
   }
 }
 </style>
