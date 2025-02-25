@@ -10,6 +10,18 @@
         <i class="fas fa-chevron-right"></i>
       </div>
     </div>
+    <!-- Paginacion -->
+    <div class="pagination">
+      <span
+        v-for="(slide, index) in getSlideCount"
+        :key="index"
+        :class="{ activate: index + 1 === currentSlide }"
+        @click="currentSlide = index + 1"
+        class="page"
+        >{{ index }}</span
+      >
+      >
+    </div>
   </div>
 </template>
 
@@ -89,15 +101,33 @@ export default {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    width: 60px; 
+    width: 60px;
     height: 60px;
     background-color: #ce12df;
     color: #fff;
-    transition: transform 0.2s; 
+    transition: transform 0.2s;
   }
 
   i:active {
     transform: scale(1.1);
   }
+}
+
+.pagination {
+  position: absolute;
+  bottom: 24px;
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+span {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff;
 }
 </style>
