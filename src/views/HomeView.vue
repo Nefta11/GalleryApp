@@ -4,7 +4,7 @@
       <SlideWrapper v-for="(slide, index) in carouselSlides" :key="index">
         <div v-show="currentSlide === index + 1" class="slide-info slide">
           <img
-            :src="require(`@/assets/${slide}.jpg`)"
+            :src="slide.url"
             alt="slide"
             class="img"
           />
@@ -17,12 +17,22 @@
 <script>
 import CarouselComponent from "@/components/CarouselComponent.vue";
 import SlideWrapper from "@/components/SlideWrapper.vue";
+import { ref, onMounted } from "vue";
+import { fetchImages } from "@/services/imageService";
 
 export default {
   name: "HomeView",
   components: { CarouselComponent, SlideWrapper },
   setup() {
-    const carouselSlides = ["img1", "img2", "img3", "img4", "img5"];
+    const carouselSlides = ref([]);
+
+    onMounted(async () => {
+      try {
+        carouselSlides.value = await fetchImages();
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
+    });
 
     return { carouselSlides };
   },
