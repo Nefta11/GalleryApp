@@ -1,5 +1,8 @@
 <template>
   <div class="carousel-container">
+    <div v-for="(image, index) in images" :key="index" class="slide">
+      <img :src="image.url" :alt="image.description" />
+    </div>
     <slot :currentSlide="currentSlide" />
     <!-- Navegación -->
     <div class="navigate">
@@ -26,11 +29,13 @@
 
 <script>
 import { ref, onMounted, watch } from "vue";
+import { fetchImages } from "../services/imageService";
 
 export default {
   setup() {
     const currentSlide = ref(1);
     const getSlideCount = ref(0);
+    const images = ref([]);
 
     // Siguiente Slide
     const nextSlide = () => {
@@ -48,16 +53,21 @@ export default {
       }
     });
 
-    onMounted(() => {
-      getSlideCount.value = document.querySelectorAll(".slide").length;
-      console.log("Slide count:", getSlideCount.value);
-      // Simulación de cambio de diapositiva
-      setInterval(() => {
-        nextSlide();
-      }, 10000);
+    onMounted(async () => {
+      try {
+        images.value = await fetchImages();
+        getSlideCount.value = images.value.length;
+        console.log("Slide count:", getSlideCount.value);
+        // Simulación de cambio de diapositiva
+        setInterval(() => {
+          nextSlide();
+        }, 10000);
+      } catch (error) {
+        console.error("Error loading images:", error);
+      }
     });
 
-    return { currentSlide, getSlideCount, nextSlide, prevSlide };
+    return { currentSlide, getSlideCount, nextSlide, prevSlide, images };
   },
 };
 </script>
