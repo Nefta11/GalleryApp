@@ -20,13 +20,12 @@
         class="page"
         >{{ index }}</span
       >
-      >
     </div>
   </div>
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 
 export default {
   setup() {
@@ -42,6 +41,12 @@ export default {
     const prevSlide = () => {
       currentSlide.value = (currentSlide.value - 2 + getSlideCount.value) % getSlideCount.value + 1;
     };
+
+    watch(getSlideCount, (newCount) => {
+      if (currentSlide.value > newCount) {
+        currentSlide.value = 1;
+      }
+    });
 
     onMounted(() => {
       getSlideCount.value = document.querySelectorAll(".slide").length;
