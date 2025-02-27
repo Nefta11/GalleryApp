@@ -35,20 +35,12 @@ export default {
 
     // Siguiente Slide
     const nextSlide = () => {
-      if (currentSlide.value === getSlideCount.value) {
-        currentSlide.value = 1;
-        return;
-      }
-      currentSlide.value += 1;
+      currentSlide.value = (currentSlide.value % getSlideCount.value) + 1;
     };
 
     // Slide Anterior
     const prevSlide = () => {
-      if (currentSlide.value === 1) {
-        currentSlide.value = getSlideCount.value;
-        return;
-      }
-      currentSlide.value -= 1;
+      currentSlide.value = (currentSlide.value - 2 + getSlideCount.value) % getSlideCount.value + 1;
     };
 
     onMounted(() => {
@@ -56,7 +48,7 @@ export default {
       console.log("Slide count:", getSlideCount.value);
       // Simulación de cambio de diapositiva
       setInterval(() => {
-        currentSlide.value = (currentSlide.value % getSlideCount.value) + 1;
+        nextSlide();
       }, 10000);
     });
 
